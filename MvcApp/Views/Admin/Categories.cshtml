@@ -1,0 +1,11 @@
+@model List<Category>
+@{ ViewData["Title"] = "Категории"; }
+<div class="container page-content admin-area">
+    <partial name="_AdminNav" />
+    <div class="kicker">CRUD · КАТЕГОРИИ</div><h1 class="page-title">Категории товаров</h1>
+    <div class="admin-panel"><h2>+ Создать категорию</h2><form asp-action="AddCategory" method="post" class="simple-form"><label>Название категории<input name="name" maxlength="90" minlength="2" required placeholder="Например, Средства ухода"/></label><button class="btn btn-primary" type="submit">Добавить категорию</button></form></div>
+    <h2 class="section-heading">Существующие категории · @Model.Count</h2>
+    @if(Model.Count == 0){<p class="muted">Категорий пока нет.</p>}
+    else {<div class="admin-list">@foreach(var item in Model){<div class="admin-list-item"><div class="row-title"><strong>@item.Name</strong><small>ID @item.Id</small></div><form asp-action="RenameCategory" method="post" class="admin-edit-row"><input type="hidden" name="id" value="@item.Id"/><label class="sr-only" for="cat-@item.Id">Изменить название категории</label><input id="cat-@item.Id" name="name" value="@item.Name" maxlength="90" minlength="2" required/><button class="btn btn-small btn-ghost" type="submit">Сохранить</button></form><form asp-action="DeleteCategory" method="post"><input type="hidden" name="id" value="@item.Id"/><button class="btn btn-small btn-danger-soft" type="submit" onclick="return confirm('Удалить категорию? Если к ней привязаны товары, удаление будет запрещено.')">Удалить</button></form></div>}</div>}
+    <p class="admin-footnote">Категорию с привязанными товарами нельзя удалить. Сначала переместите товары в другую категорию.</p>
+</div>

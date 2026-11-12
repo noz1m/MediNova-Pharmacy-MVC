@@ -1,0 +1,9 @@
+@{ var action = ViewContext.RouteData.Values["action"]?.ToString() ?? ""; }
+<nav class="admin-nav" aria-label="Разделы административной панели">
+    <a class="@(action == "Index" ? "active" : "")" asp-controller="Admin" asp-action="Index">▦ Обзор</a>
+    <a class="@(action == "Products" || action == "EditProduct" ? "active" : "")" asp-controller="Admin" asp-action="Products">▤ Товары</a>
+    <a class="@(action == "Categories" ? "active" : "")" asp-controller="Admin" asp-action="Categories">▦ Категории</a>
+    <a class="@(action == "Manufacturers" ? "active" : "")" asp-controller="Admin" asp-action="Manufacturers">◈ Производители</a>
+    <a class="@(action == "Orders" ? "active" : "")" asp-controller="Admin" asp-action="Orders">▣ Заказы</a>
+    <form asp-controller="Admin" asp-action="Logout" method="post"><button type="submit">Выйти ↗</button></form>
+</nav>

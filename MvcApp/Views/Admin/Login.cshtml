@@ -1,0 +1,3 @@
+@model AdminLoginVm
+@{ViewData["Title"]="Вход для сотрудников";}
+<div class="container page-content"><form asp-action="Login" method="post" class="login-card"><div class="kicker">MEDINOVA ADMIN</div><h1>Вход в панель</h1><p class="muted">Доступ только для уполномоченных сотрудников.</p><div asp-validation-summary="All" class="validation"></div><label>Пароль администратора<input asp-for="Password" type="password" autocomplete="current-password" /></label><button class="btn btn-primary btn-full">Войти →</button></form></div>

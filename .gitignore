@@ -1,0 +1,9 @@
+**/bin/
+**/obj/
+.vs/
+.DS_Store
+**/appsettings.Local.json
+**/appsettings.Development.local.json
+.env
+
+.fake

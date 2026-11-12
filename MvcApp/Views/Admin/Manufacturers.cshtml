@@ -1,0 +1,10 @@
+@model List<Manufacturer>
+@{ ViewData["Title"] = "Производители"; }
+<div class="container page-content admin-area"><partial name="_AdminNav"/>
+    <div class="kicker">CRUD · ПРОИЗВОДИТЕЛИ</div><h1 class="page-title">Производители</h1>
+    <div class="admin-panel"><h2>+ Создать производителя</h2><form asp-action="AddManufacturer" method="post" class="simple-form"><label>Название<input name="name" maxlength="110" minlength="2" required placeholder="Название производителя"/></label><label>Страна<input name="country" maxlength="90" placeholder="Страна"/></label><button class="btn btn-primary" type="submit">Добавить</button></form></div>
+    <h2 class="section-heading">Список производителей · @Model.Count</h2>
+    @if(Model.Count == 0){<p class="muted">Производителей пока нет.</p>}
+    else {<div class="admin-list">@foreach(var item in Model){<div class="admin-list-item"><div class="row-title"><strong>@item.Name</strong><small>@(item.Country ?? "Страна не указана")</small></div><form asp-action="RenameManufacturer" method="post" class="admin-edit-row"><input type="hidden" name="id" value="@item.Id"/><label class="sr-only" for="man-@item.Id">Изменить производителя</label><input id="man-@item.Id" name="name" value="@item.Name" maxlength="110" minlength="2" required/><label class="sr-only" for="country-@item.Id">Страна</label><input id="country-@item.Id" name="country" value="@item.Country" maxlength="90" placeholder="Страна"/><button class="btn btn-small btn-ghost" type="submit">Сохранить</button></form><form asp-action="DeleteManufacturer" method="post"><input type="hidden" name="id" value="@item.Id"/><button class="btn btn-small btn-danger-soft" type="submit" onclick="return confirm('Удалить производителя? Если к нему привязаны товары, удаление будет запрещено.')">Удалить</button></form></div>}</div>}
+    <p class="admin-footnote">Производителя с привязанными товарами нельзя удалить.</p>
+</div>

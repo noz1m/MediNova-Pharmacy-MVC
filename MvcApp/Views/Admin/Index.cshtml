@@ -1,0 +1,20 @@
+@{ ViewData["Title"] = "Панель управления"; }
+<div class="container page-content admin-area">
+    <partial name="_AdminNav" />
+    <div class="admin-title"><div><div class="kicker">MEDINOVA · ПАНЕЛЬ СОТРУДНИКА</div><h1 class="page-title">Управление аптекой</h1><p class="muted">Добавляйте и редактируйте товары, категории и производителей, обрабатывайте заявки.</p></div><a class="btn btn-primary" asp-action="EditProduct">+ Добавить товар</a></div>
+    <div class="stat-grid">
+        <div><small>Всего товаров</small><strong>@ViewBag.Products</strong></div>
+        <div><small>Заявки клиентов</small><strong>@ViewBag.Orders</strong></div>
+        <div><small>Мало на складе</small><strong>@ViewBag.LowStock</strong></div>
+        <div><small>Сумма заявок, TJS</small><strong>@(((decimal)ViewBag.Total).ToString("N2"))</strong></div>
+    </div>
+    <h2 class="section-heading">Быстрые действия</h2>
+    <div class="admin-actions">
+        <a asp-action="EditProduct" class="admin-action"><span class="action-icon">✚</span><strong>Новый товар</strong><small>Название, цена, остаток, категория</small><span class="action-arrow">→</span></a>
+        <a asp-action="Products" class="admin-action"><span class="action-icon">▤</span><strong>Все товары</strong><small>Просмотр, редактирование, скрытие и возврат</small><span class="action-arrow">→</span></a>
+        <a asp-action="Categories" class="admin-action"><span class="action-icon">▦</span><strong>Категории</strong><small>Создать, изменить, удалить</small><span class="action-arrow">→</span></a>
+        <a asp-action="Manufacturers" class="admin-action"><span class="action-icon">◈</span><strong>Производители</strong><small>Создать, изменить, удалить</small><span class="action-arrow">→</span></a>
+        <a asp-action="Orders" class="admin-action"><span class="action-icon">▣</span><strong>Заявки</strong><small>Состав, контакты и изменение статуса</small><span class="action-arrow">→</span></a>
+    </div>
+    <div class="notice">Демонстрационная система: рецептурные товары нельзя оформить через корзину. Для действующей аптеки нужны лицензирование и предусмотренная законом проверка рецептов.</div>
+</div>
